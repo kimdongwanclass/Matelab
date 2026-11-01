@@ -390,8 +390,8 @@ img{max-width:100%}
   <p class="lead">메이트학원의 학습자료와 학습콘텐츠를 제작하는 &lt;MATE LAB&gt;입니다.</p>
   <p class="lead" style="margin-top:14px">콘텐츠별 비밀번호는 해당 과목 선생님께 문의해 주시기 바랍니다.</p>
   <button class="guideband" onclick="go('guide')">
-    <span class="gb-step">처음이라면</span>
-    <span class="gb-txt"><b>메이트랩 사용 방법 먼저 보기</b><small>입장 → 학습 → 시험 → 결과 보내기까지 5단계 안내</small></span>
+    <span class="gb-step">이용 가이드</span>
+    <span class="gb-txt"><b>메이트랩 사용 방법</b></span>
     <span class="gb-go" aria-hidden="true">→</span>
   </button>
   <div style="margin-top:26px" id="homeMenu"></div>
@@ -11701,7 +11701,7 @@ window.addEventListener("error",e=>{
   bar.innerHTML=`오류가 생겼습니다. 새로고침 후 다시 해 보고, 계속되면 사이트 문의로 알려 주세요.<br><span style="color:var(--mute)">${esc(e.message)}</span>`;
 });
 initHome(); show("home");
-if(!ls.get("mlab-guided")){ ls.set("mlab-guided","1"); show("guide"); }
+
 </script>
 
 </body>
