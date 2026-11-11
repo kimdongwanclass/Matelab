@@ -445,6 +445,7 @@ img{max-width:100%}
     <h3>선생님 · 조교</h3>
     <ul>
       <li><b>시험지 생성기</b>: 교재와 범위를 고르면 단어 시험지와 정답지를 만들고, '인쇄 · PDF 저장'으로 바로 출력합니다.</li>
+      <li><b>모의고사 분석</b>: 국어·영어 모의고사 정답을 등록하고(원장 확정 후) 학생 답안을 넣으면 학생별 리포트를 PDF·PNG로 저장합니다. 교직원 비밀번호가 따로 있습니다.</li>
       <li><b>교사용 결과 확인</b>(맨 아래): 학생이 보낸 결과 카드의 인증번호가 맞는지 확인합니다. 점수를 고친 카드는 걸러집니다.</li>
     </ul>
   </div>
@@ -11129,6 +11130,12 @@ function initHome(){
       <p>범위와 유형을 골라 단어 시험지와 정답지를 만듭니다.</p>
       <span class="tag" style="background:transparent;color:var(--mute);border:1px solid var(--line)">선생님 전용</span>
     </button>
+    <a class="tile" data-k="mock" href="mock.html" style="text-decoration:none;color:inherit">
+      <span class="top"><span class="dot" style="background:var(--brand)"></span>강사 · 조교용</span>
+      <h3>모의고사 분석</h3>
+      <p>국어·영어 모의고사 정답 등록, 답안 입력, 학생별 리포트(PDF·PNG)를 만듭니다.</p>
+      <span class="tag" style="background:transparent;color:var(--mute);border:1px solid var(--line)">교직원 전용</span>
+    </a>
     <a class="tile" data-k="contact" href="${smsHref()}" style="text-decoration:none;color:inherit">
       <span class="top"><span class="dot" style="background:var(--brand)"></span>문의 · 의견</span>
       <h3>사이트 문의하기</h3>
