@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <meta name="theme-color" content="#BA4D0A">
-<meta name="description" content="메이트학원 학습자료실 - 국어 고전어휘, MATE VOCA 고등·수능 학습과 테스트">
+<meta name="description" content="메이트학원 학습자료실 - 국어 고전 어휘·필수 어휘, MATE VOCA 기본·필수·완성 학습과 테스트">
 <title>메이트랩 | 메이트학원 학습자료실</title>
 <link rel="icon" href="img/favicon/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="img/favicon/favicon-32.png" sizes="32x32" type="image/png">
@@ -31,6 +31,14 @@
   --vh:#BC3F6B;
   --vs:#8E3F72;
   --wm:#1D6F80;
+  --k2:#8F6A00;
+  --k2-fill:#D9A300;
+  --gb:#C4567F;
+  --gb-fill:#D97A9F;
+  --ps:#B04A72;
+  --ps-fill:#B04A72;
+  --ws:#8C2D54;
+  --ws-fill:#8C2D54;
   --wm-fill:#1F7F92;
   --warn:#B4452F;
   --ok:#2E7D5B;
@@ -46,7 +54,7 @@
   :root:not([data-theme="light"]) .tile{--tw:color-mix(in srgb,var(--tc) 20%,var(--card))}
   :root:not([data-theme="light"]){
     --bg:#14181B; --fg:#E9EBED; --mute:#99A3AC; --line:#2A3036; --card:#1B2024;
-    --brand:#F5893A; --on-brand:#1A1209; --ko:#F2C94C; --ko-fill:#E8B923; --en-fill:#B4567F; --vh-fill:#C2557D; --vs-fill:#9A5287; --wm-fill:#2E93A6; --vh:#F0899F; --vs:#D291C4; --wm:#6CC5D6; --warn:#E2886F;
+    --brand:#F5893A; --on-brand:#1A1209; --ko:#F2C94C; --ko-fill:#E8B923; --en-fill:#B4567F; --vh-fill:#C2557D; --vs-fill:#9A5287; --wm-fill:#2E93A6; --vh:#F0899F; --vs:#D291C4; --wm:#6CC5D6; --k2:#F2C94C; --k2-fill:#C99A1E; --gb:#F2A7C3; --gb-fill:#E08DAE; --ps:#E07AA0; --ps-fill:#C25E86; --ws:#C9638C; --ws-fill:#A84470; --warn:#E2886F;
     --ok:#6FC39B; --no:#E5886A; --ok-bg:#15241E; --no-bg:#261915;
     --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px rgba(0,0,0,.32);
     color-scheme:dark;
@@ -55,7 +63,7 @@
 :root[data-theme="dark"] .tile{--tw:color-mix(in srgb,var(--tc) 20%,var(--card))}
 :root[data-theme="dark"]{
   --bg:#14181B; --fg:#E9EBED; --mute:#99A3AC; --line:#2A3036; --card:#1B2024;
-  --brand:#F5893A; --on-brand:#1A1209; --ko:#F2C94C; --ko-fill:#E8B923; --en-fill:#B4567F; --vh-fill:#C2557D; --vs-fill:#9A5287; --wm-fill:#2E93A6; --vh:#F0899F; --vs:#D291C4; --wm:#6CC5D6; --warn:#E2886F;
+  --brand:#F5893A; --on-brand:#1A1209; --ko:#F2C94C; --ko-fill:#E8B923; --en-fill:#B4567F; --vh-fill:#C2557D; --vs-fill:#9A5287; --wm-fill:#2E93A6; --vh:#F0899F; --vs:#D291C4; --wm:#6CC5D6; --k2:#F2C94C; --k2-fill:#C99A1E; --gb:#F2A7C3; --gb-fill:#E08DAE; --ps:#E07AA0; --ps-fill:#C25E86; --ws:#C9638C; --ws-fill:#A84470; --warn:#E2886F;
     --ok:#6FC39B; --no:#E5886A; --ok-bg:#15241E; --no-bg:#261915;
   --shadow:0 1px 2px rgba(0,0,0,.4), 0 12px 30px rgba(0,0,0,.32);
   color-scheme:dark;
@@ -107,7 +115,9 @@ p{margin:0 0 13px;max-width:62ch}
 /* 카드별 색: --tc 테두리·강조, --tw 연한 바탕 */
 .tile{--tc:var(--brand);--tw:color-mix(in srgb,var(--brand) 13%,var(--card))}
 .tile[data-k="ko"]{--tc:var(--ko-fill);--tw:color-mix(in srgb,var(--ko-fill) 24%,var(--card))}
-.tile[data-k="vh"]{--tc:var(--vh-fill);--tw:color-mix(in srgb,var(--vh-fill) 14%,var(--card))}
+.tile[data-k="k2"]{--tc:var(--k2-fill);--tw:color-mix(in srgb,var(--k2-fill) 20%,var(--card))}
+.tile[data-k="gb"]{--tc:var(--gb-fill);--tw:color-mix(in srgb,var(--gb-fill) 14%,var(--card))}
+.tile[data-k="ps"]{--tc:var(--ps-fill);--tw:color-mix(in srgb,var(--ps-fill) 14%,var(--card))}
 
 /* 메인: 과목 묶음 */
 .hgroup{margin:0 0 26px}
@@ -197,7 +207,7 @@ a.tile{cursor:pointer}
 .hpband .hp-txt small{font-size:13px;opacity:.9}
 .hpband .hp-go{flex:none;display:grid;place-items:center;width:38px;height:38px;font-size:18px;font-weight:700;border-radius:50%;background:color-mix(in srgb,var(--on-brand) 16%,transparent)}
 
-.tile[data-k="vs"]{--tc:var(--vs-fill);--tw:color-mix(in srgb,var(--vs-fill) 14%,var(--card))}
+.tile[data-k="ws"]{--tc:var(--ws-fill);--tw:color-mix(in srgb,var(--ws-fill) 14%,var(--card))}
 .tile[data-k="wm"]{--tc:var(--wm-fill);--tw:color-mix(in srgb,var(--wm-fill) 14%,var(--card))}
 .tile{transition:transform .15s ease,border-color .15s ease,background-color .18s ease,box-shadow .18s ease}
 .tile:hover,.tile:focus-visible{transform:translateY(-2px);background:var(--tw);border-color:var(--tc);box-shadow:0 0 0 1px var(--tc),var(--shadow)}
@@ -572,12 +582,14 @@ img{max-width:100%}
 </footer>
 
 <script src="data/ko.js"></script>
-<script src="data/vh.js"></script>
-<script src="data/vs.js"></script>
+<script src="data/k2.js"></script>
+<script src="data/gb.js"></script>
+<script src="data/ps.js"></script>
+<script src="data/ws.js"></script>
 <script src="data/wm.js"></script>
 <script>
 /* 비밀번호는 원문 대신 SHA-256 해시로만 둔다 ("MATELAB:" + 비밀번호).
-   국어 고전어휘 1114 / MATE VOCA 수능 0301 / MATE VOCA 고등은 전체 공개 */
+   국어 교재 1114 / 영어 교재 0301 */
 const PWH = {ko:"ae26aee2ec4d3f0f04c51af625b9536cdf5ff8bb5317814df04a2e6ca40abe06", vs:"110ba1029b50aca94bf6a3cb8f2dc645218045bb7ab5f0977daeb276de878be4"};
 /* 과목 단위 비밀번호: 국어 전체 1114, 영어 전체 0301 */
 const SUBJECTS = {
@@ -585,16 +597,22 @@ const SUBJECTS = {
   "영어": {key:"en-all", title:"영어 어휘", pw:PWH.vs, cls:"g-en", desc:"MATE VOCA · WordMaster 등 영어 단어 교재"}
 };
 const COURSES = {
-  ko : {book:"너를 위한 고전 어휘", name:"국어 고전어휘", homeName:"너를 위한 고전어휘 603", sub:"고전 시가 · 고전 소설 전 범위", pw:PWH.ko, data:KO,
+  ko : {book:"고전 어휘 0630", name:"국어 고전 어휘", homeName:"고전 어휘 0630", sub:"4주 완성 630개 · 20 DAY", pw:PWH.ko, data:KO,
         desc:"", subject:"국어",
         q1:"밑줄 친 말의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 고전 어휘는?"},
-  vh: {book:"MATE VOCA 고등 2700", name:"MATE VOCA 고등", sub:"고등 2700 · 30개씩 90DAY", pw:PWH.vs, data:VH,
+  k2 : {book:"필수 어휘 1114", name:"국어 필수 어휘", homeName:"필수 어휘 1114", sub:"내신과 수능을 위한 국어 어휘 · 40 DAY", pw:PWH.ko, data:K2,
+        desc:"", subject:"국어",
+        q1:"다음 어휘의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 어휘는?"},
+  gb : {book:"MATE VOCA 기본", name:"MATE VOCA 기본", sub:"기본 900 · 30개씩 30 DAY", pw:PWH.vs, data:GB,
         desc:"", vocab:true, subject:"영어",
         q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"},
-  vs: {book:"MATE VOCA 수능 4500", name:"MATE VOCA 수능", sub:"수능 4500 · 50개씩 90DAY", pw:PWH.vs, data:VS,
+  ps : {book:"MATE VOCA 필수", name:"MATE VOCA 필수", sub:"필수 1200 · 30개씩 40 DAY", pw:PWH.vs, data:PS,
         desc:"", vocab:true, subject:"영어",
         q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"},
-  wm: {book:"WordMaster 수능 2000", name:"WordMaster 수능", sub:"수능 2000 · 40개씩 50DAY", pw:PWH.vs, data:WM,
+  ws : {book:"MATE VOCA 완성", name:"MATE VOCA 완성", sub:"완성 1500 · 30개씩 50 DAY (제작 중)", pw:PWH.vs, data:WS,
+        desc:"", vocab:true, subject:"영어",
+        q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"},
+  wm : {book:"WordMaster 수능 2000", name:"WordMaster 수능", sub:"수능 2000 · 40개씩 50 DAY", pw:PWH.vs, data:WM,
         desc:"", vocab:true, subject:"영어",
         q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"}
 };
@@ -639,7 +657,7 @@ function lockAll(){ unlocked={}; subjOK={}; }
 
 const star=n=>"★".repeat(n);
 const meta=it=>[it.s?star(it.s):"",it.t].filter(Boolean).join(" · ");
-const SYMS={"n.":"ⓝ","v.":"ⓥ","adj.":"㉭","ad.":"㉥","prep.":"㉨","conj.":"◯접"};
+const SYMS={"n.":"ⓝ","v.":"ⓥ","adj.":"㉭","ad.":"㉥","prep.":"㉨","conj.":"◯접","pron.":"㉣"};
 /* 영어 단어의 뜻을 교재처럼 'ⓝ 뜻  ⓥ 뜻'으로 만든다 (HTML) */
 function meanHTML(it){
   if(!SYMS[it.sub.split("/")[0]]) return esc(it.m);
@@ -663,7 +681,7 @@ function show(name){
   VIEWS.forEach(k=>document.getElementById("v-"+k).hidden=(k!==name));
   const subjCourse = curSubj==="국어"?"ko":"";
   document.body.setAttribute("data-course", ["subject"].includes(name)||(name==="gate"&&gateMode==="subject") ? subjCourse
-    : (cur&&!["home","contact"].includes(name)?cur:""));
+    : (cur&&!["home","contact"].includes(name)?(COURSES[cur].subject==="국어"?"ko":cur):""));
   const c=cur?COURSES[cur]:null;
   const label={gate:"비밀번호",subject:curSubj&&SUBJECTS[curSubj].title,course:c&&c.name,study:(c?c.name+" · ":"")+"학습하기",
     exam:(c?c.name+" · ":"")+"시험보기",run:"시험 진행 중",result:"채점 결과",
