@@ -168,6 +168,15 @@ body[data-course="ko"] .rp-list input{accent-color:var(--ko-fill)}
 .tile.big-subj{padding:24px}
 .tile.big-subj h3{font-size:22px}
 .tile[data-k="en"]{--tc:var(--en-fill);--tw:color-mix(in srgb,var(--en-fill) 13%,var(--card))}
+/* 교재 표지 */
+.coverrow{list-style:none;margin:10px 0 4px;padding:0;display:flex;flex-wrap:wrap;gap:12px}
+.coverrow li{width:76px;display:flex;flex-direction:column;gap:6px;font-size:11.5px;line-height:1.3;color:var(--fg);word-break:keep-all}
+.coverrow img,.tcover{display:block;width:100%;aspect-ratio:210/297;object-fit:cover;border-radius:3px;background:var(--line);
+  box-shadow:0 1px 2px rgba(0,0,0,.12),0 4px 12px rgba(0,0,0,.10)}
+.tile.withcover{flex-direction:row;align-items:center;gap:16px}
+.tile.withcover .tcover{width:84px;flex:none}
+.tile .tbody{display:flex;flex-direction:column;gap:6px;min-width:0}
+@media (max-width:480px){.coverrow li{width:64px}.tile.withcover .tcover{width:72px}}
 .booklist{list-style:none;margin:6px 0 2px;padding:0;display:flex;flex-direction:column;gap:4px;font-size:13.5px;color:var(--fg)}
 .booklist li{display:flex;align-items:center;gap:7px}
 .booklist .dot{width:7px;height:7px;border-radius:50%;flex:none}
@@ -597,22 +606,22 @@ const SUBJECTS = {
   "영어": {key:"en-all", title:"영어 어휘", pw:PWH.vs, cls:"g-en", desc:"MATE VOCA · WordMaster 등 영어 단어 교재"}
 };
 const COURSES = {
-  ko : {book:"고전 어휘 0630", name:"국어 고전 어휘", homeName:"고전 어휘 0630", sub:"4주 완성 630개 · 20 DAY", pw:PWH.ko, data:KO,
+  ko : {cover:"img/covers/ko.webp", book:"고전 어휘 0630", name:"국어 고전 어휘", homeName:"고전 어휘 0630", sub:"4주 완성 630개 · 20 DAY", pw:PWH.ko, data:KO,
         desc:"", subject:"국어",
         q1:"밑줄 친 말의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 고전 어휘는?"},
-  k2 : {book:"필수 어휘 1114", name:"국어 필수 어휘", homeName:"필수 어휘 1114", sub:"내신과 수능을 위한 국어 어휘 · 40 DAY", pw:PWH.ko, data:K2,
+  k2 : {cover:"img/covers/k2.webp", book:"필수 어휘 1114", name:"국어 필수 어휘", homeName:"필수 어휘 1114", sub:"내신과 수능을 위한 국어 어휘 · 40 DAY", pw:PWH.ko, data:K2,
         desc:"", subject:"국어",
         q1:"다음 어휘의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 어휘는?"},
-  gb : {book:"MATE VOCA 기본", name:"MATE VOCA 기본", sub:"기본 900 · 30개씩 30 DAY", pw:PWH.vs, data:GB,
+  gb : {cover:"img/covers/gb.webp", book:"MATE VOCA 기본", name:"MATE VOCA 기본", sub:"기본 900 · 30개씩 30 DAY", pw:PWH.vs, data:GB,
         desc:"", vocab:true, subject:"영어",
         q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"},
-  ps : {book:"MATE VOCA 필수", name:"MATE VOCA 필수", sub:"필수 1200 · 30개씩 40 DAY", pw:PWH.vs, data:PS,
+  ps : {cover:"img/covers/ps.webp", book:"MATE VOCA 필수", name:"MATE VOCA 필수", sub:"필수 1200 · 30개씩 40 DAY", pw:PWH.vs, data:PS,
         desc:"", vocab:true, subject:"영어",
         q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"},
-  ws : {book:"MATE VOCA 완성", name:"MATE VOCA 완성", sub:"완성 1500 · 30개씩 50 DAY", pw:PWH.vs, data:WS,
+  ws : {cover:"img/covers/ws.webp", book:"MATE VOCA 완성", name:"MATE VOCA 완성", sub:"완성 1500 · 30개씩 50 DAY", pw:PWH.vs, data:WS,
         desc:"", vocab:true, subject:"영어",
         q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"},
-  wm : {book:"WordMaster 수능 2000", name:"WordMaster 수능", sub:"수능 2000 · 40개씩 50 DAY", pw:PWH.vs, data:WM,
+  wm : {cover:"img/covers/wm.webp", book:"WordMaster 수능 2000", name:"WordMaster 수능", sub:"수능 2000 · 40개씩 50 DAY", pw:PWH.vs, data:WM,
         desc:"", vocab:true, subject:"영어",
         q1:"다음 단어의 뜻으로 알맞은 것은?", q2:"다음 뜻에 해당하는 단어는?"}
 };
@@ -701,10 +710,11 @@ const LOGO_HTML=document.querySelector(".hbar .seal.logo").outerHTML;
 function initHome(){
   const tile=k=>{
     const c=COURSES[k];
-    return `<button class="tile" data-k="${k}" onclick="go('course','${k}')">
+    return `<button class="tile${c.cover?" withcover":""}" data-k="${k}" onclick="go('course','${k}')">
+      ${c.cover?`<img class="tcover" src="${c.cover}" alt="『${esc(c.book)}』 표지" loading="lazy">`:""}<span class="tbody">
       <span class="top"><span class="dot" style="background:var(--${k})"></span>${esc(c.sub)}</span>
       <h3>${esc(c.homeName||c.name)}</h3>
-      <p>어휘 ${c.items.length.toLocaleString()}개 · UNIT ${c.themes.length}개</p>
+      <p>어휘 ${c.items.length.toLocaleString()}개 · UNIT ${c.themes.length}개</p></span>
     </button>`;
   };
   const subjTile=sj=>{
@@ -714,7 +724,7 @@ function initHome(){
       <span class="subj" data-s="${sj}">${sj}</span>
       <h3>${esc(S.title)}</h3>
       <p>교재 ${ks.length}권 · 어휘 ${words.toLocaleString()}개</p>
-      <ul class="booklist">${ks.map(k=>`<li><span class="dot" style="background:var(--${k})"></span>${esc(COURSES[k].homeName||COURSES[k].book||COURSES[k].name)}</li>`).join("")}</ul>
+      <ul class="coverrow">${ks.map(k=>`<li>${COURSES[k].cover?`<img src="${COURSES[k].cover}" alt="" loading="lazy">`:""}<span>${esc(COURSES[k].homeName||COURSES[k].book||COURSES[k].name)}</span></li>`).join("")}</ul>
       <span class="tag" style="background:color-mix(in srgb,var(--${sj==="국어"?"ko":"en-fill"}) 12%,transparent);color:var(--${sj==="국어"?"ko":"en-fill"})">${sj} 수강생 전용</span>
     </button>`;
   };
