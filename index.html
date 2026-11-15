@@ -437,7 +437,7 @@ img{max-width:100%}
   </div>
 
 
-  <p class="lead" style="margin-top:22px">사이트가 이상하거나 틀린 뜻을 발견하면 처음 화면의 <b>사이트 문의하기</b>로 알려 주세요.</p>
+  <p class="lead" style="margin-top:22px">사이트가 이상하거나 틀린 뜻을 발견하면 처음 화면 <b>문의</b>의 목동관·김포관 카카오톡 채널로 알려 주세요.</p>
   <div class="row" style="margin-top:18px"><button class="btn" onclick="go('home')">처음 화면으로</button></div>
 </section>
 
@@ -587,7 +587,7 @@ img{max-width:100%}
 
 <footer class="wrap">
   <span>메이트학원 · 메이트랩 · <a href="https://mate4u.netlify.app/" target="_blank" rel="noopener" style="color:var(--mute)">메이트학원 홈페이지 ↗</a></span>
-  <span style="display:flex;gap:16px"><a id="ftSms" href="#" style="color:var(--mute);font-size:12.5px">사이트 문의</a></span>
+  <span style="display:flex;gap:16px"><a href="https://pf.kakao.com/_AALWX/chat" target="_blank" rel="noopener" style="color:var(--mute);font-size:12.5px">목동관 카카오톡</a><a href="https://pf.kakao.com/_xfAZaX/chat" target="_blank" rel="noopener" style="color:var(--mute);font-size:12.5px">김포관 카카오톡</a></span>
 </footer>
 
 <script src="data/ko.js"></script>
@@ -731,12 +731,12 @@ function initHome(){
   window._tile=tile;
   document.getElementById("homeMenu").innerHTML =
     `<div class="hgroup"><h2 class="hgh hgh-plain"><span>어휘 학습</span></h2><div class="menu">${Object.keys(SUBJECTS).map(subjTile).join("")}</div></div>`
-    + `<div class="hgroup g-etc"><h2 class="hgh"><span>문의</span></h2><div class="menu"><a class="tile" data-k="contact" href="${smsHref()}" style="text-decoration:none;color:inherit">
-      <span class="top"><span class="dot" style="background:var(--brand)"></span>문의 · 의견</span>
-      <h3>사이트 문의하기</h3>
-      <p>고쳐야 할 점이나 바라는 기능을 문자로 보내 주세요.</p>
-      <span class="tag" style="background:transparent;color:var(--mute);border:1px solid var(--line)">문자 보내기</span>
-    </a>
+    + `<div class="hgroup g-etc"><h2 class="hgh"><span>문의</span></h2><div class="menu">${KAKAO.map(c=>`<a class="tile" data-k="contact" href="${c.url}" target="_blank" rel="noopener" style="text-decoration:none;color:inherit">
+      <span class="top"><span class="dot" style="background:${c.color}"></span>카카오톡 채널</span>
+      <h3>${c.name} 문의하기</h3>
+      <p>고쳐야 할 점이나 바라는 기능을 ${c.name} 카카오톡 채널로 보내 주세요.</p>
+      <span class="tag" style="background:transparent;color:${c.color};border:1px solid ${c.color}">카카오톡 열기 ↗</span>
+    </a>`).join("")}
     </div></div>
     <a class="hpband" href="${HOME_URL}" target="_blank" rel="noopener">
       <span class="hp-txt"><b>메이트학원 홈페이지 바로가기</b><small>학원 소개 · 수업 안내 · 상담 신청</small></span>
@@ -1090,7 +1090,7 @@ function showResultFallback(err){
   const right=quiz.filter((q,i)=>answers[i]===q.ans).length;
   document.getElementById("rCard").innerHTML=`<div class="rc-name">${esc(examMeta?examMeta.name:"")}</div>
     <div class="rc-score"><span class="big">${right}</span><span class="of">/ ${quiz.length}</span></div>
-    <p class="hintline">결과 카드를 만드는 중 문제가 생겼습니다. 이 화면을 캡처해 선생님께 보내고, 사이트 문의로 알려 주세요. (${esc(err&&err.message||err)})</p>`;
+    <p class="hintline">결과 카드를 만드는 중 문제가 생겼습니다. 이 화면을 캡처해 선생님께 보내고, 카카오톡 채널로 알려 주세요. (${esc(err&&err.message||err)})</p>`;
   show("result");
 }
 
@@ -1167,14 +1167,11 @@ function copyResult(){
   }catch(e){ta.select();msg.textContent="자동 복사가 막혔습니다. 선택된 글을 직접 복사하세요."}
 }
 
-/* ===== 문의 문자: 누르면 문자 앱이 바로 열리고 머리말이 채워진다 ===== */
-const SMS_TO="01055289505", SMS_HEAD="[메이트랩 사이트 관련 문의]\n";
-function smsHref(){
-  /* 아이폰은 sms:번호&body=, 안드로이드는 sms:번호?body= */
-  const ios=/iPad|iPhone|iPod/.test(navigator.userAgent)||(navigator.platform==="MacIntel"&&navigator.maxTouchPoints>1);
-  return `sms:${SMS_TO}${ios?"&":"?"}body=${encodeURIComponent(SMS_HEAD)}`;
-}
-document.addEventListener("DOMContentLoaded",()=>{const a=document.getElementById("ftSms"); if(a) a.href=smsHref();});
+/* ===== 문의: 두 관 카카오톡 채널 (문자 번호는 2026-11부터 받지 않음) ===== */
+const KAKAO=[
+  {name:"목동관",url:"https://pf.kakao.com/_AALWX/chat",color:"#125E32"},
+  {name:"김포관",url:"https://pf.kakao.com/_xfAZaX/chat",color:"#0C357F"}
+];
 
 
 window.addEventListener("error",e=>{
@@ -1183,7 +1180,7 @@ window.addEventListener("error",e=>{
   if(!bar){bar=document.createElement("div");bar.id="errbar";bar.setAttribute("role","alert");
     bar.style.cssText="position:fixed;left:12px;right:12px;bottom:12px;z-index:99;background:var(--card);border:1px solid var(--warn);color:var(--fg);border-radius:8px;padding:10px 13px;font-size:13px;box-shadow:var(--shadow)";
     document.body.appendChild(bar);}
-  bar.innerHTML=`오류가 생겼습니다. 새로고침 후 다시 해 보고, 계속되면 사이트 문의로 알려 주세요.<br><span style="color:var(--mute)">${esc(e.message)}</span>`;
+  bar.innerHTML=`오류가 생겼습니다. 새로고침 후 다시 해 보고, 계속되면 카카오톡 채널로 알려 주세요.<br><span style="color:var(--mute)">${esc(e.message)}</span>`;
 });
 initHome(); show("home");
 
